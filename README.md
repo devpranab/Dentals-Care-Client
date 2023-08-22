@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Dental's Care (Frontend Project)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ A single Page Medical and Clinic Related Website.
+ Used ReactJS(React-router-dom, Context-API) and TailwindsCSS for front-end with Firebase for Authentication.
+ Fully Responsive for all Devices.
+ Data Send in Database and read in Dashboard.
 
-## Available Scripts
+### My Frontend Steps:
+- npx create-react-app dentals-care,
+- Setup tailwindcss,
+- Project clean, 
+- Component tree,
+- Title,
+- Favicon, 
+- Add assets/data
+- Setup react-router-dom,
+- Changes index.html,
+- Home page design with responsive,
+- Dynamic title,
 
-In the project directory, you can run:
+#### Live Link:
 
-### `npm start`
+### Core Functionalities:
+1. User (Add Appointment by Date & Dashboard- Manage Appointment & Appointment Status);
+2. Master Admin Panel (Manage all Appointment Details, Add Doctors, Manage Doctors)
+3. Uses Private Route without user login can’t access Dashboard / Without Master Admin Can’t see Master
+Admin Features
+Technology:
+React JS, Stripe Payment Gateway, Node JS, MongoDB, Express JS, Firebase Hosting and Authentication, Private
+Route, ImageBB, Axios, Heroku(Server Hosting)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Tools & Tech: Reactjs, TailwindCss, Firebase,
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The doctor appointment website is a platform designed to simplify the process of booking and managing doctor appointments. It allows users to easily create appointments with doctors by selecting the desired date and time slot. The website is user-friendly and intuitive, making it easy for users to navigate and book appointments.
 
-### `npm test`
+In addition, the website features an admin panel where doctors and administrators can manage appointments and view schedules. Doctors can view their upcoming appointments, reschedule or cancel appointments, and add new appointment slots to their schedule. Admins can manage doctor profiles, add or remove doctors, and view appointment logs.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Overall, the doctor appointment website streamlines the process of scheduling and managing appointments for doctors and patients alike, providing a convenient and efficient solution for medical professionals and patients.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##### Thank You!

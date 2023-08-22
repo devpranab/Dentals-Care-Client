@@ -1,0 +1,16 @@
+.makeAppointment {
+    position: relative;
+}
+
+.appImg {
+    position: absolute;
+    width: 550px;
+    height: 580px;
+    top: -205px;
+}
+
+@media only screen and (max-width: 768px) {
+    .appImg {
+      display: hidden;
+    }
+  }
