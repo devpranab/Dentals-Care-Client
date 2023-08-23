@@ -17,6 +17,9 @@
 - Changes index.html,
 - Home page design with responsive,
 - Dynamic title,
+- Appointment page design with responsive,
+
+
 
 #### Live Link:
 
