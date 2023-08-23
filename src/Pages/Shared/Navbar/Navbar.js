@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSun, FaMoon, FaUser } from 'react-icons/fa';
 import { TbDental } from 'react-icons/tb';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                toast.success("User Logged Out Successfully");
+            })
+            .catch(err => console.error(err))
+    }
 
     const menuItems = <>
-      <li className='text-lg font-semibold'><Link to={'/'}>Home</Link></li>
+        <li className='text-lg font-semibold'><Link to={'/'}>Home</Link></li>
         <li className='text-lg font-semibold'><Link to={'/appointment'}>Appointment</Link></li>
-        <li className='text-lg font-semibold'><Link to={'/dashboard'}>Dashboard</Link></li>
-        <li className='text-lg font-semibold'><Link to={'/user'}>User</Link></li>
-        <li className='text-lg font-semibold'><Link to={'/login'}>Login</Link></li>
-        <li className='text-lg font-semibold'><button><FaMoon /></button></li>
 
+        {
+            user?.email ? <>
+            <li className='text-lg font-semibold'><Link to={'/dashboard'}>Dashboard</Link></li>
+                <li><Link className='font-semibold'><FaUser/> {user?.displayName}</Link></li>
+                <li onClick={handleLogOut}><Link>Log Out</Link></li></> :
+                <li><Link to={'/login'}>Login</Link></li>
+        }
+        <li className='text-lg font-semibold'><button><FaMoon /></button></li>
     </>
     return (
         <div className="navbar bg-base-100">
@@ -25,7 +40,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case font-semibold text-2xl"><TbDental/> Dental's Care</Link>
+                <Link className="btn btn-ghost normal-case font-semibold text-2xl"><TbDental /> Dental's Care</Link>
             </div>
             <div className="navbar-center hidden md:flex ml-auto">
                 <ul className="menu menu-horizontal p-0">

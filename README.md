@@ -18,8 +18,9 @@
 - Home page design with responsive,
 - Dynamic title,
 - Appointment page design with responsive,
-
-
+- Login auth with PrivateRouter,
+- Auth add navbar, AvailableAppointment & dark mode,
+- Dashboard Page,
 
 #### Live Link:
 
