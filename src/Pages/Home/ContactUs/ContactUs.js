@@ -1,6 +1,7 @@
 import React from 'react';
 import banner from '../../../assets/images/appointment.png'
 import MainButton from '../../../components/MainButton';
+import { AiOutlineContacts } from 'react-icons/ai';
 
 const ContactUs = () => {
     return (
@@ -16,7 +17,7 @@ const ContactUs = () => {
                         <input type="text" placeholder="Subject" className="input input-bordered input-info w-full mb-5" />
                         <textarea className="textarea textarea-info mb-5 w-full h-40" placeholder="Your Message"></textarea>
                         <div className='flex justify-center'>
-                            <MainButton> Submit </MainButton>
+                            <MainButton><AiOutlineContacts/>{".."}Submit</MainButton>
                         </div>
                     </form>
                 </div>

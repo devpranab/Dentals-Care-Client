@@ -3,6 +3,8 @@ import banner from '../../../assets/images/bg.png'
 import chair from '../../../assets/images/chair.png'
 import MainButton from '../../../components/MainButton';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
+import { TfiWrite } from 'react-icons/tfi';
 
 const Banner = () => {
     const { isDarkMode } = useContext(AuthContext);
@@ -14,7 +16,7 @@ const Banner = () => {
                 <div>
                     <h1 className={`text-5xl font-bold ${isDarkMode ? "text-white" : "text-neutral"} font-sans`}>Your New Smile Starts Here</h1>
                     <p className={`py-6 ${isDarkMode ? "text-white" : "text-black"}`}>Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <MainButton>Get Started</MainButton>
+                    <Link to="/appointment"><MainButton><TfiWrite/>{" -"}  Make An Appointment</MainButton></Link>
                 </div>
             </div>
 

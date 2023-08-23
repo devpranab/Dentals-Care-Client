@@ -23,9 +23,10 @@ const Navbar = () => {
         {
             user?.email ? <>
             <li className='text-lg font-semibold'><Link to={'/dashboard'}>Dashboard</Link></li>
-                <li><Link className='font-semibold'><FaUser/> {user?.displayName}</Link></li>
-                <li onClick={handleLogOut}><Link>Log Out</Link></li></> :
-                <li><Link to={'/login'}>Login</Link></li>
+                <li className='text-lg font-semibold'><Link className='font-semibold pr-[0]'><span className='w-7 h-7 border-2 rounded-full text-center'><img className='rounded-full w-full h-full' src={user?.photoURL} alt='User Img'/></span>{user?.displayName}</Link></li>
+                
+                <li className='text-lg font-semibold pl-3' onClick={handleLogOut}><Link>Log Out</Link></li></> :
+                <li className='text-lg font-semibold pl-3'><Link to={'/login'}>Login</Link></li>
         }
         <li className='text-lg font-semibold'><button onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? <FaSun /> : <FaMoon />}
