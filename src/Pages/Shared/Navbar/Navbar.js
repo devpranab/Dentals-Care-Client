@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, isDarkMode, setIsDarkMode } = useContext(AuthContext);
 
     const handleLogOut = () => {
         logOut()
@@ -27,10 +27,12 @@ const Navbar = () => {
                 <li onClick={handleLogOut}><Link>Log Out</Link></li></> :
                 <li><Link to={'/login'}>Login</Link></li>
         }
-        <li className='text-lg font-semibold'><button><FaMoon /></button></li>
+        <li className='text-lg font-semibold'><button onClick={() => setIsDarkMode(!isDarkMode)}>
+                {isDarkMode ? <FaSun /> : <FaMoon />}
+            </button></li>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className={`navbar ${isDarkMode ? "bg-gray-800 text-white" : "bg-base-100 text-black"}`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost md:hidden">

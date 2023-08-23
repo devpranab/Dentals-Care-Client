@@ -1,7 +1,10 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
+    const { user, isDarkMode } = useContext(AuthContext);
     const date = format(selectedDate, 'PP')
     const { name, slots } = treatment; //treatment is appointment options
 
@@ -23,41 +26,42 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
         //TODO: Send data to server and once data is saved 
         // then close the modal and display success toast
         console.log(booking);
-        setTreatment(null)
+        setTreatment(null);
+        toast.success('Appointment booked Successfully.');
     }
 
     return (
         <>
-            <input type="checkbox" id="booking-modal" className="modal-toggle" />
-            <div className="modal">
-                <div className="modal-box relative">
-                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold text-neutral">{name}</h3>
-                    <form onSubmit={handleBooking}>
-                        <input type="text" placeholder="date" value={date} className="input input-bordered w-full my-5 font-semibold " disabled />
+        <input type="checkbox" id="booking-modal" className="modal-toggle" />
+        <div className="modal">
+            <div className={`modal-box relative ${isDarkMode ? "text-white bg-black" : "text-black"}`}>
+                <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 className={`text-lg font-bold ${isDarkMode ? "text-white" : "text-black"}`}>{name}</h3>
+                <form onSubmit={handleBooking}>
+                    <input type="text" placeholder="date" value={date} className={`input input-bordered w-full my-5 font-semibold ${isDarkMode ? "text-white bg-black" : "text-black"}`} readOnly />
 
-                        <select name='slot' className="select select-bordered w-full mb-5">
-                            {slots?.length === 0 ?
-                                <option selected disabled>Try Another day</option>
-                                :
-                                slots?.map((slot, i) => <option
-                                    key={i}
-                                    value={slot}
-                                >{slot}</option>)
-                            }
+                    <select name='slot' className={`select select-bordered w-full mb-5 ${isDarkMode ? "text-white bg-black" : "text-black"}`}>
+                        {slots?.length === 0 ?
+                            <option selected disabled>Try Another day</option>
+                            :
+                            slots?.map((slot, i) => <option
+                                key={i}
+                                value={slot}
+                            >{slot}</option>)
+                        }
 
-                        </select>
+                    </select>
 
-                        <input type="text" name='name' placeholder="Full Name" className="input input-bordered font-semibold text-neutral w-full mb-5" required />
+                    <input type="text" name='name' defaultValue={user?.displayName} placeholder="Full Name" className={`input input-bordered font-semibold ${isDarkMode ? "text-white bg-black" : "text-black"} w-full mb-5`} readOnly />
 
-                        <input type="number" name='phone' placeholder="Phone Number" className="input input-bordered font-semibold text-neutral w-full mb-5 " required />
+                    <input type="number" name='phone' placeholder="Phone Number" className={`input input-bordered font-semibold ${isDarkMode ? "text-white bg-black" : "text-black"} w-full mb-5 `} required />
 
-                        <input type="email" name='email' placeholder="Email" className="input input-bordered font-semibold text-neutral w-full mb-5" required />
-                        <input type="submit" value="Submit" className='btn text-white font-semibold w-full' />
-                    </form>
-                </div>
+                    <input type="email" name='email' placeholder='Your Email' defaultValue={user?.email} className={`input input-bordered font-semibold ${isDarkMode ? "text-white bg-black" : "text-black"} w-full mb-5`} readOnly />
+                    <input type="submit" value="Submit" className='btn text-white font-semibold w-full' />
+                </form>
             </div>
-        </>
+        </div>
+    </>
     );
 };
 

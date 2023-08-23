@@ -6,6 +6,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
+    document.title = "Login"; //dynamic title
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { loginUserWithEmail, signInwithGoogle, forgetPassword, isDarkMode } = useContext(AuthContext);
     const [loginUserEmail, setLoginUserEmail] = useState('');

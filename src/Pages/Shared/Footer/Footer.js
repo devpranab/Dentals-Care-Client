@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import footer from '../../../../src/assets/images/footer-bg.png';
 import MainButton from "../../../components/MainButton";
 import Whatsapp from './Whatsapp';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { AiFillYoutube } from 'react-icons/ai';
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Footer = () => {
+  const { isDarkMode } = useContext(AuthContext);
 
   const noNamed = [
     { name: "Emergency Check Up", link: "/emergency" },
@@ -19,9 +21,8 @@ const Footer = () => {
     { name: "New York - 101010 Hudson", link: "//google.com/map" }
   ];
 
-
   return (
-    <div className='bg-cover bg-no-repeat bg-center' style={{ backgroundImage: `url(${footer})` }}>
+    <div className={`bg-cover bg-no-repeat bg-center ${isDarkMode ? "text-white" : "text-black"}`} style={{ backgroundImage: `url(${footer})` }}>
       <footer className='grid md:grid-cols-2 lg:grid-cols-4 gap-10 px-10 pt-12 pb-6'>
         <div>
           <span className="footer-title block">Services</span>
