@@ -21,6 +21,7 @@
 - Login auth with PrivateRouter,
 - Auth add navbar, AvailableAppointment & dark mode,
 - Dashboard Page,
+- Data Send in Database and read in Dashboard,
 
 #### Live Link:
 

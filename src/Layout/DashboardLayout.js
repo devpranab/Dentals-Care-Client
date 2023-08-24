@@ -1,11 +1,35 @@
-import React from 'react';
-import Dashboard from '../Pages/Dashboard/Dashboard/Dashboard';
+import React, { useContext } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
+    const { user } = useContext(AuthContext);
+
     return (
         <div>
-            <Dashboard></Dashboard>
+            <Navbar></Navbar>
+
+            <div className="drawer drawer-mobile">
+                <input id="dashboard-drawer" type="checkbox" className="drawer-toggle  " />
+                <div className="drawer-content">
+                    <Outlet></Outlet>
+
+                </div>
+                <div className="drawer-side">
+                    <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+                    <ul className="menu p-4 w-80 bg-base-100 sm:bg-transparent text-base-content lg:bg-sky-400 lg:text-white rounded">
+                        {/* <!-- Sidebar content here --> */}
+                        <li><Link to={'/dashboard'}>My Appointments</Link></li>
+                        {/* only admin */}
+                        <li><Link to={'/dashboard/allusers'}>All Users</Link></li>
+                        <li><Link to={'/dashboard/adddoctor'}>Add a Doctor</Link></li>
+                        <li><Link to={'/dashboard/managedoctors'}>Manage Doctors</Link></li>
+                </ul>
+
+            </div>
         </div>
+        </div >
     );
 };
 

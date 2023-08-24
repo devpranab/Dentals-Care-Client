@@ -6,6 +6,7 @@ import Register from '../../Pages/Register/Register';
 import Appointment from '../../Pages/Appointment/Appointment/Appointment';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import DashboardLayout from '../../Layout/DashboardLayout';
+import MyAppointment from '../../Pages/Dashboard/MyAppointment/MyAppointment';
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,12 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyAppointment></MyAppointment>
+            }
+        ]
     }
 ]);

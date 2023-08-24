@@ -4,16 +4,22 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     document.title = "Login"; //dynamic title
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { loginUserWithEmail, signInwithGoogle, forgetPassword, isDarkMode } = useContext(AuthContext);
     const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
+    
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const [email, setEmail] = useState('');
 
@@ -22,7 +28,7 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState(false);
 
     const handleLogin = data => {
-        setErrorMessage('')
+        setErrorMessage('');
         loginUserWithEmail(data.email, data.password)
             .then(res => {
                 const user = res.user;

@@ -1,6 +1,7 @@
 import React, {useState, createContext, useEffect} from 'react';
 import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import {auth} from '../Firebase/Firebase';
+import Loading from '../Pages/Shared/Loading/Loading';
 
 export const AuthContext = createContext();
 
@@ -8,6 +9,10 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(false);
+    
+    if (loader) {
+        <Loading></Loading>
+    }
 
     const createUser = (email, password) => {
         setLoader(true);

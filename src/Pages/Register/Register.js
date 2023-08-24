@@ -4,25 +4,34 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
     document.title = "Register"; //dynamic title
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { createUser, updateUser, signInwithGoogle } = useContext(AuthContext);
+    const { createUser, updateUser, signInwithGoogle, setLoader } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
     const googleProvider = new GoogleAuthProvider();
 
+    const [createdEmail, setCreatedEmail] = useState('');
+    const [token] = useToken(createdEmail);
+
+    if (token) {
+        navigate('/');
+    }
+
     const handleRegister = (data) => {
-        setErrorMessage('')
-        console.log(data)
+        setErrorMessage('');
+        setLoader(true);
+        console.log(data);
         createUser(data.email, data.password)
             .then(res => {
                 const user = res.user;
                 console.log(user)
-                handleUserInfo(data.name)
-                toast.success('User created Successfully.')
-                navigate('/')
+                handleUserInfo(data.name, data.email);
+                toast.success('User created Successfully.');
+                navigate('/');
             })
             .catch(error => {
                 console.error(error)
@@ -30,9 +39,12 @@ const Register = () => {
                 setErrorMessage(message)
             })
     }
-    const handleUserInfo = name => {
+    const handleUserInfo = (name, email) => {
         updateUser(name)
-            .then(() => { })
+            .then(() => {
+                saveUser(name, email)
+                setLoader(false)
+            })
             .catch(err => console.error(err))
     }
 
@@ -52,9 +64,20 @@ const Register = () => {
                 setErrorMessage(message);
             })
     }
+
     const saveUser = (name, email) => {
-        const user = { name, email }
-        console.log(user);
+        const user = { name, email };
+        fetch(`http://localhost:5012/users`, {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(() => {
+                setCreatedEmail(email);
+            })
     }
 
     return (
