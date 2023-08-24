@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const MyAppointment = () => {
-    const { user } = useContext(AuthContext);
+    const { user, isDarkMode } = useContext(AuthContext);
+
     const url = `http://localhost:5012/booking?email=${user?.email}`
     const { data: bookings = [] } = useQuery({
         queryKey: ['booking', user?.email],
@@ -17,7 +18,6 @@ const MyAppointment = () => {
             return data
         },
     });
-    console.log("myb", bookings);
     
     return (
         <div className='px-5'>
@@ -25,7 +25,7 @@ const MyAppointment = () => {
             <div className="overflow-x-auto my-10 ">
                 <table className="table w-full">
                     <thead>
-                        <tr>
+                        <tr className={` ${isDarkMode ? 'bg-[black] text-black' : 'text-black'}`}>
                             <th></th>
                             <th>Name</th>
                             <th>Treatment</th>
@@ -33,9 +33,9 @@ const MyAppointment = () => {
                             <th>Time</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={` ${isDarkMode ? 'bg-[black] text-black' : 'text-black'}`}>
                     {
-                            bookings?.map((booking, i) =>
+                        bookings.length && bookings?.map((booking, i) =>
                                 <tr key={i} className="hover">
                                     <th>{i + 1}</th>
                                     <td>{booking?.name}</td>
@@ -43,7 +43,7 @@ const MyAppointment = () => {
                                     <td>{booking?.appointmentDate}</td>
                                     <td>{booking?.slot}</td>
                                 </tr>)
-                        }
+                        } 
                     </tbody>
                 </table>
             </div>

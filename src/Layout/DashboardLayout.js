@@ -4,7 +4,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
-    const { user } = useContext(AuthContext);
+    const { user, isDarkMode } = useContext(AuthContext);
 
     return (
         <div>
@@ -18,7 +18,8 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-base-100 sm:bg-transparent text-base-content lg:bg-sky-400 lg:text-white rounded">
+                    {/* <ul className={` bg-base-100 sm:bg-transparent  ${isDarkMode ? 'text-green' : 'bg-sky-400'} rounded`}> */}
+                    <ul className={`menu p-4 w-80 text-base-content rounded ${isDarkMode ? 'bg-white text-black' : 'bg-[#18d4ec] text-white'}`}>
                         {/* <!-- Sidebar content here --> */}
                         <li><Link to={'/dashboard'}>My Appointments</Link></li>
                         {/* only admin */}
